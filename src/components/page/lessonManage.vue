@@ -53,7 +53,7 @@
                             <span class="function-num">0</span>
                         </el-menu-item>
                         <el-menu-item index="/manage/lessonManage/statisticsManage">统计分析</el-menu-item>
-                        <el-menu-item index="4" class='btn-import'>
+                        <el-menu-item index="/manage/lessonManage/importData" class='btn-import' >
                             导入数据
                         </el-menu-item>
                     </el-menu>
@@ -68,27 +68,7 @@
     export default {
         data: function() {
             return {
-                activeIndex: '/manage/lessonManage/funcManage',
-                // lastIndex:3,
-                // items: [{
-                //         routing: 'funcManage',
-                //         title: '单词管理',
-                //         num:0
-                //     },
-                //     {
-                //         routing: 'caseManage',
-                //         title: '关卡管理',
-                //         num:0
-                //     },
-                //     {
-                //         routing: 'statisticsManage',
-                //         title: '统计分析',
-                //     },
-                //     {
-                //         // index: 'statisticsManage',
-                //         title: '导入数据',
-                //     }
-                // ]
+                activeIndex: '/manage/lessonManage/funcManage'
             }
         },
         methods: {
@@ -97,9 +77,6 @@
             }
         },
         computed: {
-            onRoutes() {
-                return this.$route.path.replace('/', '');
-            }
         },
         created(){
             // this.lastIndex=this.items.length-1;
@@ -239,11 +216,11 @@
     }
 
     .el-menu-item.is-active {
-        background-color: #fff !important;
-        color: #319bd7 !important;
+        background-color: #fff;
+        color: #319bd7;
         font-size: 14px !important;
-        border: 0!important;
-        height: 52px!important;
+        border: 0;
+        height: 52px;
     }
     .btn-import{
         margin-top: 10px;
@@ -256,6 +233,12 @@
         margin-right: 10px;
     }
     .btn-import:hover{
+        height: 32px;
+        background-color: #319bd7;
+        color: #fff;
+    }
+
+    .btn-import.is-active {
         height: 32px;
         background-color: #319bd7;
         color: #fff;

@@ -31,6 +31,10 @@ export default new Router({
                         {
                             path : 'statisticsManage',
                             component : resolve => require(['../components/page/statisticsManage.vue'], resolve)
+                        },
+                        {
+                        path: 'importData',
+                        component: resolve => require(['../components/page/importData.vue'], resolve)
                         }
                     ]
                 },

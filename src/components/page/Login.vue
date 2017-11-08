@@ -154,4 +154,15 @@ import Axios from 'axios'
         font-size: 12px;
         color:#d56968
     }
+    input,
+    .el-input__inner {
+        border: none!important;
+        border-bottom: 1px solid #bfcbd9 !important;
+        border-radius: 0 !important;
+    }
+
+    input:hover,
+    .el-input__inner:hover {
+        border-color: #319bd7;
+    }
 </style>

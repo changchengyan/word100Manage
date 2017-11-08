@@ -42,6 +42,7 @@ export default {
         font-size: 14px;
         color: #fff;
         line-height: 22px;
-        cursor: pointer
+        cursor: pointer;
+        border-radius: 5px;
     }
 </style>

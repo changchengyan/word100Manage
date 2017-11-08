@@ -1,5 +1,18 @@
 <template>
     <div class="lessonManage">
+        <template v-if="ifShowClassOptions">
+            <div class="chooseClass">
+                <span class="book-str">选择书籍:</span>
+                    <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
+            </div>
+        </template>
         <div class="top-abstract">
             <el-row>
                 <el-col :span="24" class="wrap-card">
@@ -54,12 +67,36 @@
     export default {
         data: function() {
             return {
-                activeIndex: '/manage/lessonManage/funcManage'
+                activeIndex: '/manage/lessonManage/funcManage',
+                options: [{
+                value: '选项1',
+                label: '黄金糕'
+                }, {
+                value: '选项2',
+                label: '双皮奶'
+                }, {
+                value: '选项3',
+                label: '蚵仔煎'
+                }, {
+                value: '选项4',
+                label: '龙须面'
+                }, {
+                value: '选项5',
+                label: '北京烤鸭'
+                }],
+                value: '',
+                ifShowClassOptions:false
             }
         },
         methods: {
             handleSelect(key, keyPath) {
-                console.log(key, keyPath);
+                let self=this;
+                console.log(keyPath[0]);
+                if(keyPath[0]=="/manage/lessonManage/caseManage"){
+                    self.ifShowClassOptions=true;
+                }else{
+                    self.ifShowClassOptions=false;
+                }
             }
         },
         computed: {},
@@ -73,13 +110,15 @@
     .lessonManage {
         width: 100%;
         /* height: 100%; */
-        height:80%;
+        height: 80.5%;
     }
-    .top-abstract{
+
+    .top-abstract {
         width: 100%;
         height: 171px;
         box-sizing: border-box;
     }
+
     .wrap-card {
         display: flex;
         justify-content: space-between;
@@ -236,5 +275,26 @@
         height: 32px;
         background-color: #319bd7;
         color: #fff!important;
+    }
+
+
+    /* 管卡管理的样式文件 */
+    .chooseClass{
+        font-size: 14px;
+        color:#666;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        align-items: center;
+    }
+    .el-select {
+        display: inline-block;
+        position: relative;
+        width: 465px;
+    }
+    .chooseClass .book-str{
+        display: inline-block;
+        margin-right: 10px;
     }
 </style>

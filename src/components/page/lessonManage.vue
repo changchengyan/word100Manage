@@ -33,21 +33,31 @@
         <div class="middle-content">
             <el-row>
                 <el-col :span="24" class="nav-card">
-                    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                        <el-menu-item index="1">
+                    <!-- <el-menu :default-active="onRoutes" class="el-menu-demo" mode="horizontal" theme="dark" unique-opened router @select="handleSelect">
+                        <template v-for="(item,idx) in items">
+                            <el-menu-item :routing="item.routing" :key='idx' v-bind:class="{ btnImport: lastIndex==3 }">
+                                <span class="function-str">{{ item.title }}</span>
+                                <template v:if="item.num>=0">
+                                    <span class="function-num">{{item.num}}</span>
+                                </template>
+                            </el-menu-item>
+                        </template>
+                     </el-menu> -->
+                    <el-menu :default-active="activeIndex" class="el-menu-demo"  unique-opened router mode="horizontal" @select="handleSelect">
+                        <el-menu-item index="/manage/lessonManage/funcManage">
                             <span class="function-str">单词管理</span>
                             <span class="function-num">0</span>
                         </el-menu-item>
-                        <el-menu-item index="2">
+                        <el-menu-item index="/manage/lessonManage/caseManage">
                             <span class="function-str">关卡管理</span>
                             <span class="function-num">0</span>
                         </el-menu-item>
-                        <el-menu-item index="3">统计分析</el-menu-item>
+                        <el-menu-item index="/manage/lessonManage/statisticsManage">统计分析</el-menu-item>
                         <el-menu-item index="4" class='btn-import'>
                             导入数据
                         </el-menu-item>
                     </el-menu>
-
+                    <router-view></router-view>
                 </el-col>
             </el-row>
         </div>
@@ -58,16 +68,41 @@
     export default {
         data: function() {
             return {
-                activeIndex: '1',
-                activeIndex2: '1',
-                activeIndex3: '1',
-                activeIndex4: '1'
+                activeIndex: '/manage/lessonManage/funcManage',
+                // lastIndex:3,
+                // items: [{
+                //         routing: 'funcManage',
+                //         title: '单词管理',
+                //         num:0
+                //     },
+                //     {
+                //         routing: 'caseManage',
+                //         title: '关卡管理',
+                //         num:0
+                //     },
+                //     {
+                //         routing: 'statisticsManage',
+                //         title: '统计分析',
+                //     },
+                //     {
+                //         // index: 'statisticsManage',
+                //         title: '导入数据',
+                //     }
+                // ]
             }
         },
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             }
+        },
+        computed: {
+            onRoutes() {
+                return this.$route.path.replace('/', '');
+            }
+        },
+        created(){
+            // this.lastIndex=this.items.length-1;
         }
     }
 </script>
@@ -165,6 +200,7 @@
         width: 100%;
         height: 100%;
         margin-top: 20px;
+        background-color: #fff;
     }
 
     .nav-card {
@@ -194,6 +230,7 @@
     }
     .el-menu-item:hover {
         height: 52px;
+        background-color: transparent
     }
 
     .el-menu-item:visited {

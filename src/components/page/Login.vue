@@ -67,7 +67,7 @@ import Axios from 'axios'
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
                         localStorage.setItem('ms_username', self.ruleForm.username);
-                        self.$router.push('/readme');
+                        self.$router.push('/manage/lessonManage');
                         console.log("1242353");
                     } else {
                         console.log('error submit!!');

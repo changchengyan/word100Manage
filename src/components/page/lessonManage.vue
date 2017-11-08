@@ -30,36 +30,22 @@
                 </el-col>
             </el-row>
         </div>
-        <div class="middle-content">
-            <el-row>
-                <el-col :span="24" class="nav-card">
-                    <!-- <el-menu :default-active="onRoutes" class="el-menu-demo" mode="horizontal" theme="dark" unique-opened router @select="handleSelect">
-                        <template v-for="(item,idx) in items">
-                            <el-menu-item :routing="item.routing" :key='idx' v-bind:class="{ btnImport: lastIndex==3 }">
-                                <span class="function-str">{{ item.title }}</span>
-                                <template v:if="item.num>=0">
-                                    <span class="function-num">{{item.num}}</span>
-                                </template>
-                            </el-menu-item>
-                        </template>
-                     </el-menu> -->
-                    <el-menu :default-active="activeIndex" class="el-menu-demo"  unique-opened router mode="horizontal" @select="handleSelect">
-                        <el-menu-item index="/manage/lessonManage/funcManage">
-                            <span class="function-str">单词管理</span>
-                            <span class="function-num">0</span>
-                        </el-menu-item>
-                        <el-menu-item index="/manage/lessonManage/caseManage">
-                            <span class="function-str">关卡管理</span>
-                            <span class="function-num">0</span>
-                        </el-menu-item>
-                        <el-menu-item index="/manage/lessonManage/statisticsManage">统计分析</el-menu-item>
-                        <el-menu-item index="/manage/lessonManage/importData" class='btn-import' >
-                            导入数据
-                        </el-menu-item>
-                    </el-menu>
-                    <router-view></router-view>
-                </el-col>
-            </el-row>
+        <div class="middle-content ">
+            <el-menu :default-active="activeIndex" class="el-menu-demo nav-card" unique-opened router mode="horizontal" @select="handleSelect">
+                <el-menu-item index="/manage/lessonManage/funcManage">
+                    <span class="function-str">单词管理</span>
+                    <span class="function-num">0</span>
+                </el-menu-item>
+                <el-menu-item index="/manage/lessonManage/caseManage">
+                    <span class="function-str">关卡管理</span>
+                    <span class="function-num">0</span>
+                </el-menu-item>
+                <el-menu-item index="/manage/lessonManage/statisticsManage">统计分析</el-menu-item>
+                <el-menu-item index="/manage/lessonManage/importData" class='btn-import'>
+                    导入数据
+                </el-menu-item>
+            </el-menu>
+            <router-view></router-view>
         </div>
     </div>
 </template>
@@ -76,9 +62,8 @@
                 console.log(key, keyPath);
             }
         },
-        computed: {
-        },
-        created(){
+        computed: {},
+        created() {
             // this.lastIndex=this.items.length-1;
         }
     }
@@ -87,13 +72,17 @@
 <style scoped>
     .lessonManage {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
+        height:80%;
     }
-
+    .top-abstract{
+        width: 100%;
+        height: 171px;
+        box-sizing: border-box;
+    }
     .wrap-card {
         display: flex;
         justify-content: space-between;
-        /* align-items: center; */
         padding: 10px;
         background: #fff;
     }
@@ -175,9 +164,11 @@
 
     .middle-content {
         width: 100%;
+        /* height: calc(100% - 171px); */
         height: 100%;
         margin-top: 20px;
         background-color: #fff;
+        /* overflow: hidden; */
     }
 
     .nav-card {
@@ -191,6 +182,7 @@
         width: 100%;
         background: #eaf5fb;
     }
+
     .el-menu-item {
         /* width: 100%; */
         border: 0!important;
@@ -199,12 +191,12 @@
         flex-direction: column;
         justify-content: center;
         color: #999 !important;
-
     }
-    .el-menu-item span {
 
+    .el-menu-item span {
         line-height: 20px;
     }
+
     .el-menu-item:hover {
         height: 52px;
         background-color: transparent
@@ -217,12 +209,13 @@
 
     .el-menu-item.is-active {
         background-color: #fff;
-        color: #319bd7;
+        color: #319bd7!important;
         font-size: 14px !important;
         border: 0;
         height: 52px;
     }
-    .btn-import{
+
+    .btn-import {
         margin-top: 10px;
         width: 120px;
         height: 32px;
@@ -232,7 +225,8 @@
         float: right;
         margin-right: 10px;
     }
-    .btn-import:hover{
+
+    .btn-import:hover {
         height: 32px;
         background-color: #319bd7;
         color: #fff;
@@ -241,6 +235,6 @@
     .btn-import.is-active {
         height: 32px;
         background-color: #319bd7;
-        color: #fff;
+        color: #fff!important;
     }
 </style>

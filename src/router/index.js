@@ -40,7 +40,7 @@ export default new Router({
                     ]
                 },
                 {
-                    path: '/basecharts',
+                    path: 'basecharts',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve) // vue-schart组件
                 }
             ]

@@ -94,14 +94,30 @@
                 console.log(keyPath[0]);
                 if(keyPath[0]=="/manage/lessonManage/caseManage"){
                     self.ifShowClassOptions=true;
+                    localStorage.setItem("idx",keyPath[0]);
                 }else{
                     self.ifShowClassOptions=false;
+                    localStorage.setItem("idx",keyPath[0]);
                 }
             }
         },
-        computed: {},
+        computed: {
+        },
         created() {
-            // this.lastIndex=this.items.length-1;
+            let idx=localStorage.getItem("idx")
+            console.log(idx)
+            if(idx){
+                if(idx=="/manage/lessonManage/funcManage"){
+                this.$router.push("/manage/lessonManage/funcManage")
+                }else if(idx=="/manage/lessonManage/caseManage"){
+                    this.$router.push("/manage/lessonManage/caseManage")
+                    this.ifShowClassOptions=true;
+                    this.activeIndex="/manage/lessonManage/caseManage";
+                }else{
+                    this.$router.push("/manage/lessonManage/statisticsManage")
+                }
+            }
+
         }
     }
 </script>

@@ -52,7 +52,7 @@
 
   }
   .el-aside, .el-main {
-      overflow: visible
+      overflow: visible;
   }
   .el-footer{
       display: flex;

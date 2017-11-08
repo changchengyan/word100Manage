@@ -4,7 +4,7 @@
             <img src="../../assets/elephent_logo.png" alt="">
             <span class="logo-str">单词 100</span>
         </div>
-        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
+        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="dark" unique-opened router>
             <template v-for="(item,idx) in items">
                 <el-menu-item :index="item.index" :key='idx'>
                     <i :class="item.icon"></i>{{ item.title }}
@@ -18,23 +18,24 @@
     export default {
         data() {
             return {
+                activeIndex:'/manage/lessonManage/funcManage',
                 items: [{
                         icon: 'el-icon-setting',
-                        index: 'lessonManage',
+                        index: '/manage/lessonManage/funcManage',
                         title: '课程管理'
                     },
                     {
                         icon: 'el-icon-star-on',
-                        index: 'basecharts',
+                        index: '/manage/basecharts',
                         title: '消息中心'
                     }
                 ]
             }
         },
         computed: {
-            onRoutes() {
-                return this.$route.path.replace('/', '');
-            }
+            // onRoutes() {
+            //     return this.$route.path.replace('/', '');
+            // }
         }
     }
 </script>
@@ -82,8 +83,8 @@
     }
 
     .el-menu-item.is-active {
-        background: url('../../assets/item_hover_bg.png');
-        background-size: 100% 100%;
+        background: url('../../assets/item_hover_bg.png')!important;;
+        background-size: 100% 100%!important;;
         padding-left: 0 !important;
     }
 </style>

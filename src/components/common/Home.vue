@@ -15,9 +15,6 @@
                         </transition>
                     <!-- </div> -->
                 </el-main>
-                <el-footer>
-                    <v-footer></v-footer>
-                </el-footer>
             </el-container>
         </el-container>
     </div>
@@ -26,12 +23,10 @@
 <script>
     import vHead from './Header.vue';
     import vSidebar from './Sidebar.vue';
-    import  vFooter from './Footer'
     export default {
         components: {
             vHead,
             vSidebar,
-            vFooter
         }
     }
 </script>
@@ -71,14 +66,15 @@
   }
 
   .el-main {
-    height: 100%;
+    /* height: 100%; */
     background-color: #f5f5f5;
     text-align: center;
     margin-top: 20px;
     margin-left: 12px;
     margin-right: 12px;
     padding: 0 !important;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    overflow: auto!important;
   }
 
   body > .el-container {

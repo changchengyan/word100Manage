@@ -17,7 +17,7 @@
             <el-row>
                 <el-col :span="24" class="wrap-card">
                     <div class="brief-pic">
-                        <img src="../../assets/template_book.png" alt="">
+                        <img src="../../../../../assets/template_book.png" alt="">
                     </div>
                     <div class="brief-str">
                         <div class="left-side">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="right-side">
-                            <img src="../../assets/edit_gray.png" alt="">
+                            <img src="../../../../../assets/edit_gray.png" alt="">
                             <span>修改</span>
                         </div>
                     </div>
@@ -45,16 +45,16 @@
         </div>
         <div class="middle-content ">
             <el-menu :default-active="activeIndex" class="el-menu-demo nav-card" unique-opened router mode="horizontal" @select="handleSelect">
-                <el-menu-item index="/manage/lessonManage/funcManage">
+                <el-menu-item index="/manage/dataBaseEdit/funcManage">
                     <span class="function-str">单词管理</span>
                     <span class="function-num">0</span>
                 </el-menu-item>
-                <el-menu-item index="/manage/lessonManage/caseManage">
+                <el-menu-item index="/manage/dataBaseEdit/caseManage">
                     <span class="function-str">关卡管理</span>
                     <span class="function-num">0</span>
                 </el-menu-item>
-                <el-menu-item index="/manage/lessonManage/statisticsManage">统计分析</el-menu-item>
-                <el-menu-item index="/manage/lessonManage/importData" class='btn-import'>
+                <el-menu-item index="/manage/dataBaseEdit/statisticsManage">统计分析</el-menu-item>
+                <el-menu-item index="/manage/dataBaseEdit/importData" class='btn-import'>
                     导入数据
                 </el-menu-item>
             </el-menu>
@@ -67,7 +67,7 @@
     export default {
         data: function() {
             return {
-                activeIndex: '/manage/lessonManage/funcManage',
+                activeIndex: '/manage/dataBaseEdit/funcManage',
                 options: [{
                 value: '选项1',
                 label: '黄金糕'
@@ -92,7 +92,7 @@
             handleSelect(key, keyPath) {
                 let self=this;
                 console.log(keyPath[0]);
-                if(keyPath[0]=="/manage/lessonManage/caseManage"){
+                if(keyPath[0]=="/manage/dataBaseEdit/caseManage"){
                     self.ifShowClassOptions=true;
                     localStorage.setItem("idx",keyPath[0]);
                 }else{
@@ -107,19 +107,24 @@
             let idx=localStorage.getItem("idx")
             console.log(idx)
             if(idx){
-                if(idx=="/manage/lessonManage/funcManage"){
-                this.$router.push("/manage/lessonManage/funcManage")
-                }else if(idx=="/manage/lessonManage/caseManage"){
-                    this.$router.push("/manage/lessonManage/caseManage")
+                if(idx=="/manage/dataBaseEdit/funcManage"){
+                this.$router.push("/manage/dataBaseEdit/funcManage")
+                }else if(idx=="/manage/dataBaseEdit/caseManage"){
+                    this.$router.push("/manage/dataBaseEdit/caseManage")
                     this.ifShowClassOptions=true;
-                    this.activeIndex="/manage/lessonManage/caseManage";
+                    this.activeIndex="/manage/dataBaseEdit/caseManage";
                 }else{
-                    this.$router.push("/manage/lessonManage/statisticsManage")
-                    this.activeIndex="/manage/lessonManage/statisticsManage";
+                    this.$router.push("/manage/dataBaseEdit/statisticsManage")
+                    this.activeIndex="/manage/dataBaseEdit/statisticsManage";
 
                 }
             }
 
+        },
+        //页面销毁时进行的回调
+        destroyed () {
+            localStorage.setItem("idx","/manage/dataBaseEdit/funcManage");
+            this.ifShowClassOptions=false;
         }
     }
 </script>

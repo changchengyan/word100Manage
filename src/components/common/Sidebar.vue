@@ -4,7 +4,7 @@
             <img src="../../assets/elephent_logo.png" alt="">
             <span class="logo-str">单词 100</span>
         </div>
-        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="dark" unique-opened router>
+        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="dark" unique-opened router @click="gotoself">
             <template v-for="(item,idx) in items">
                 <el-menu-item :index="item.index" :key='idx'>
                     <i :class="item.icon"></i>{{ item.title }}
@@ -18,10 +18,10 @@
     export default {
         data() {
             return {
-                activeIndex:'/manage/lessonManage/funcManage',
+                activeIndex:'/manage/lessonManage',
                 items: [{
                         icon: 'el-icon-setting',
-                        index: '/manage/lessonManage/funcManage',
+                        index: '/manage/lessonManage',
                         title: '课程管理'
                     },
                     {
@@ -33,9 +33,14 @@
             }
         },
         computed: {
-            // onRoutes() {
+            // activeIndex() {
             //     return this.$route.path.replace('/', '');
             // }
+        },
+        methods: {
+            gotoself(){
+                this.$route.push("/manage/lessonManage/")
+            }
         }
     }
 </script>

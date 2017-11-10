@@ -18,30 +18,40 @@ export default new Router({
             children:[
                 {
                     path : 'lessonManage',
-                    component : resolve =>require(['../components/page/lessonManage.vue'], resolve),
-                    children:[
-                        {
-                            path : 'funcManage',
-                            name:'funcManage',
-                            component : resolve =>require(['../components/page/funcManage.vue'], resolve)
-                        },
-                        {
-                            path : 'caseManage',
-                            component : resolve => require(['../components/page/caseManage.vue'], resolve)
-                        },
-                        {
-                            path : 'statisticsManage',
-                            component : resolve => require(['../components/page/statisticsManage.vue'], resolve)
-                        },
-                        {
-                        path: 'importData',
-                        component: resolve => require(['../components/page/importData.vue'], resolve)
-                        }
-                    ]
+                    component : resolve =>require(['../components/page/lessonManage/index.vue'], resolve),
+                },
+                {
+                    path: 'lessonBriefEdit',
+                    component: resolve => require(['../components/page/lessonManage/manageNav/lessonBriefEdit.vue'], resolve)
                 },
                 {
                     path: 'basecharts',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve) // vue-schart组件
+                },
+                {
+                    path:"dataBaseEdit",
+                    component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/index.vue'], resolve),
+                    children:[
+                        {
+                            path: 'funcManage',
+                            name: 'funcManage',
+                            component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/funcManage.vue'], resolve)
+                        }, {
+                            path: 'caseManage',
+                            component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/caseManage.vu' +
+                                    'e'], resolve)
+                        },
+                        {
+                            path: 'statisticsManage',
+                            component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/statisticsMan' +
+                                    'age.vue'], resolve)
+                        },
+                        // {
+                        //     path : 'importData',
+                        //     component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/statisticsMan' +
+                        //             'age.vue'], resolve)
+                        // }
+                    ]
                 }
             ]
         },

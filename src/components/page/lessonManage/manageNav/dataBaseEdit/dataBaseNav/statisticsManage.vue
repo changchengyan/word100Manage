@@ -117,10 +117,6 @@
                     </el-date-picker>
                 </div>
                 <div class="transaction-canvas">
-                    <div class="echarts">
-                        <IEcharts :option="bar" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
-                        <button @click="doRandom">Random</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -130,12 +126,6 @@
 <script>
 export default {
     data(){
-        let data = []
-        for (let i = 0; i <= 360; i++) {
-            let t = i / 180 * Math.PI
-            let r = Math.sin(2 * t) * Math.cos(2 * t)
-            data.push([r, i])
-        }
         return{
             items:[
                 {num:9189.50,name:"累计交易",showBorder:false},
@@ -157,42 +147,14 @@ export default {
                 {name:"分享次数/ 人数 ",num:"15/11",day:{dayUp:"+52.48%",dayDown:"+33.82%"},week:{"weekUp":"-29.49%","weekDown":"+15.19%"},month:{"monthUp":"+152.51%","monthDown":"+83.07%"},showBorder:false},
             ],
             dataValue: '',
-            loading: true,
-            bar: {
-                title: {
-                text: 'ECharts Hello World'
-                },
-                tooltip: {},
-                xAxis: {
-                data: ['Shirt', 'Sweater', 'Chiffon Shirt', 'Pants', 'High Heels', 'Socks']
-                },
-                yAxis: {},
-                series: [{
-                name: 'Sales',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-                }]
-            }
         }
     },
     methods: {
-        doRandom() {
-            const that = this;
-            let data = [];
-            for (let i = 0, min = 5, max = 99; i < 6; i++) {
-            data.push(Math.floor(Math.random() * (max + 1 - min) + min));
-            }
-            that.loading = !that.loading;
-            that.bar.series[0].data = data;
-        },
-        onReady(instance) {
-            console.log(instance);
-        },
-        onClick(event, instance, echarts) {
-            console.log(arguments);
-      }
     },
     computed: {
+
+    },
+     created () {
 
     }
 }
@@ -364,7 +326,8 @@ export default {
         justify-content: flex-start;
         align-items: center;
         font-size: 16px;
-        color:#333
+        color:#333;
+        margin-bottom:20px;
     }
     .transaction-survey{
         line-height: 16px;
@@ -387,12 +350,11 @@ export default {
         color: #666;
         font-size: 12px;
     }
-
-    /* canvas */
-    .echarts {
-        width: 400px;
-        height: 400px;
+    .el-date-editor.el-input{
+        width: 250px !important;
     }
+    /* canvas */
+
 
 
 </style>

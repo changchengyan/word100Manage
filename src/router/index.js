@@ -33,16 +33,18 @@ export default new Router({
                     component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/index.vue'], resolve),
                     children:[
                         {
-                            path: 'funcManage',
-                            name: 'funcManage',
-                            component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/funcManage.vue'], resolve)
+                            path : 'wordsManage/:id',
+                            name : 'wordsManage',
+                            component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/wordsManage.vue'], resolve)
                         }, {
-                            path: 'caseManage',
+                            path: 'caseManage/:id',
+                            name:"caseManage",
                             component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/caseManage.vu' +
                                     'e'], resolve)
                         },
                         {
-                            path: 'statisticsManage',
+                            path: 'statisticsManage/:id',
+                            name : 'statisticsManage',
                             component : resolve => require(['../components/page/lessonManage/manageNav/dataBaseEdit/dataBaseNav/statisticsMan' +
                                     'age.vue'], resolve)
                         },

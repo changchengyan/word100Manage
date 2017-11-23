@@ -1,25 +1,24 @@
 <template>
     <div class="funcManage ">
-        <div class="wrap-tip" v-if="wordList.tableData.length<= 0">
-            <img src="../../../../../../assets/none_data.png" alt="">
-            <div class="tip">
-                <span>您当前还没有单词，快去</span><span class="hightLight" @click="nowEditWord">新增单词 </span>或<span class="hightLight"  @click="_showImportModel">导入数据</span>吧
-            </div>
+          <div class="wrap-tip" v-if="wordList.tableData.length<= 0 && findWordInfo.word=='' && findWordInfo.state=='-1'">
+              <img src="../../../../../../assets/none_data.png" alt="">
+              <div class="tip">
+                  <span>您当前还没有单词，快去</span><span class="hightLight" @click="nowEditWord">新增单词 </span>或<span class="hightLight"  @click="_showImportModel">导入数据</span>吧
+              </div>
+          </div>
+          <!-- 单词列表 -->
+        <div class="word-table-show" v-else >
+          <!-- 表格 -->
+          <word-List :wordList="wordList" :getOnlyShowInCaseManage="caseManage"   @editWord="nowEditWord" @formChangeTable="submitForm" @changePage="changePage" @deleteWord="deleteWord"></word-List>
+        </div> 
+          <!-- 新增单词/修改单词 -->
+        <div class="newWords" >
+          <add-word :wordInfo="wordInfo" :word_app_content_id="word_app_content_id" @saveWord="toSaveWord"  :ShowAddModel ="isShowAddModel" ref="childMethod"></add-word>
         </div>
-        <!-- 单词列表 -->
-      <div class="word-table-show" v-else >
-        <!-- 表格 -->
-        <word-List :wordList="wordList"  @editWord="nowEditWord" @formChangeTable="submitForm" @changePage="changePage" @deleteWord="deleteWord"></word-List>
-      </div> 
-        <!-- 新增单词/修改单词 -->
-      <div class="newWords" >
-        <add-word :wordInfo="wordInfo" :word_app_content_id="word_app_content_id" @saveWord="toSaveWord"  :ShowAddModel ="isShowAddModel" ref="childMethod"></add-word>
-      </div>
-      <!-- 一键导入 -->
-      <div class="importModel">
-        <import-model :showImportModel ="showImportModel" :word_app_content_id="word_app_content_id" @upData="toGetWord"></import-model>
-      </div>
-     
+        <!-- 一键导入 -->
+        <div class="importModel">
+          <import-model :showImportModel ="showImportModel" :word_app_content_id="word_app_content_id" @upData="toGetWord"></import-model>
+        </div>
   </div>
 </template>
 
@@ -33,7 +32,6 @@ export default {
   props:['word_app_content_id'],
   data() {
     return {
-      _word_app_content_id: 0,
       wordList: {
         tableData: [],
         totalCount: 0,
@@ -45,6 +43,7 @@ export default {
         word: "",
         state: -1
       },
+      caseManage:'',
       title: "",
       isShowAddModel: {
         showModel: false
@@ -59,12 +58,12 @@ export default {
    
   },
   methods: {
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
+    // handleSizeChange(val) {
+    //   console.log(`每页 ${val} 条`);
+    // },
+    // handleCurrentChange(val) {
+    //   console.log(`当前页: ${val}`);
+    // },
     //导入数据
     _showImportModel() {
       this.showImportModel.showModel = true;
@@ -87,6 +86,7 @@ export default {
         //新增单词
         this.wordInfo = {};
         this.wordInfo.editWord = 0;
+        console.log("this.wordInfo",this.wordInfo)
         this.isShowAddModel.showModel = true;
       }
     },
@@ -108,7 +108,11 @@ export default {
     //删除单词
     deleteWord(id) {
       let that = this;
+      console.log("id",id)
       delWord(id).then(function(res) {
+        if(res.success){
+          this.$emit('tellLessonManageReduiceOneWord',val)
+        }
         that.toGetWord();
       });
     },
@@ -129,9 +133,8 @@ export default {
     //取数据
     toGetWord() {
       let that = this;
-      console.log("word_app_content_id",that._word_app_content_id)
       getWord(
-        that._word_app_content_id,
+        that.word_app_content_id,
         that.findWordInfo.word,
         that.findWordInfo.state,
         that.wordList.pageIndex,
@@ -157,7 +160,6 @@ export default {
   // },
   created: function() {
     const that = this;
-    this._word_app_content_id = this.word_app_content_id;
     that.toGetWord();
   }
 };

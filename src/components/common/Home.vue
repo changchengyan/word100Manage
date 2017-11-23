@@ -15,6 +15,13 @@
                         </transition>
                     <!-- </div> -->
                 </el-main>
+                <!-- <el-footer>
+                    <div class="greyColor"></div>
+                    <div class="btns">
+                        <div class="save">保存</div>
+                        <div class="release">发布</div>
+                    </div>
+                </el-footer> -->
             </el-container>
         </el-container>
     </div>
@@ -38,7 +45,7 @@
         height: 100%;
         background-color: #f5f5f5;
     }
-     .el-header, .el-footer {
+     .el-header {
     background-color: #fff;
     color: #000;
     text-align: center;
@@ -49,13 +56,44 @@
   .el-aside, .el-main {
       overflow: visible;
   }
-  .el-footer{
-      display: flex;
-      justify-content: space-around;
-      flex-direction: row;
-      align-items: center;
-      line-height: 0px;
+  .lessonManage .el-footer{
+      width: 100%;
+      /* line-height: 0px; */
+      position: absolute;
+      bottom: 0px;
+      left: 180px;
+      background-color: #fff;
+      height: 52px!important;
+      padding: 0;
   }
+  .lessonManage .greyColor{
+      width: 100%;
+      height: 2px;
+      background-color: #f5f5f5;
+  }
+  .lessonManage .btns{
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .lessonManage .btns>div{
+      font-size: 14px;
+      padding: 6px 60px;
+      color: #333;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+  .lessonManage .btns .save{
+      border: 1px solid #eee;
+      margin-right: 250px;
+  }
+  .lessonManage .btns .release{
+      background-color: #319bd7;
+      color: #fff;
+  }
+
 
   .el-aside {
     background-color: #D3DCE6;
@@ -66,7 +104,7 @@
   }
 
   .el-main {
-    /* height: 100%; */
+    height: 100%;
     background-color: #f5f5f5;
     text-align: center;
     margin-top: 20px;
@@ -74,7 +112,8 @@
     margin-right: 12px;
     padding: 0 !important;
     /* box-sizing: border-box; */
-    overflow: auto!important;
+    /* overflow: auto!important; */
+    
   }
 
   body > .el-container {

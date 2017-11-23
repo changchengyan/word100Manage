@@ -7,7 +7,8 @@
         <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="dark" unique-opened router @click="gotoself">
             <template v-for="(item,idx) in items">
                 <el-menu-item :index="item.index" :key='idx'>
-                    <i :class="item.icon"></i>{{ item.title }}
+                    <i :class="item.icon" style="display:inline-block;margin-right:2px;"></i>
+                    <span>{{ item.title }}</span>
                 </el-menu-item>
             </template>
         </el-menu>
@@ -20,12 +21,12 @@
             return {
                 activeIndex:'/manage/lessonManage',
                 items: [{
-                        icon: 'el-icon-setting',
+                        icon: 'iconfont icon-kechengguanli',
                         index: '/manage/lessonManage',
                         title: '课程管理'
                     },
                     {
-                        icon: 'el-icon-star-on',
+                        icon: 'iconfont icon-lingdang',
                         index: '/manage/basecharts',
                         title: '消息中心'
                     }

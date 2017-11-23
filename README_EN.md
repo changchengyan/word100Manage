@@ -308,3 +308,10 @@ Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete '
 ### Green theme ###
 
 ![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
+
+
+
+#  deplay  in up  anthor,I reduice  some Func and fixed router for my requirement
+
+
+我增加了页面内 组件的的拖拽  ，同时增加了页面的下拉刷新，同时借用lodash做一些数据处理。   git  当前文件后   需要npm  install     
